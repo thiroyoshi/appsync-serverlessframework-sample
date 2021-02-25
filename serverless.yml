@@ -1,0 +1,46 @@
+service: appsync-serverlessframework-sample
+
+provider:
+  name: aws
+  stage: dev
+  runtime: python3.8
+  region: ap-northeast-1
+  role: arn:aws:iam::${file(sls_configurations/config/common.yml):ACCOUNT_ID}:role/${opt:stage, self:provider.stage}-${self:service.name}-lambda-role
+  versionFunctions: false
+  tracing:
+    lambda: true
+  environment:
+    env: ${opt:stage, self:provider.stage}
+    region: ${self:provider.region}
+    project: ${self:service.name}
+  tags:
+    PROJECT: ${self:service.name}
+
+package:
+  exclude:
+    - set_env.bat
+    - set_env.bat.example
+    - node_modules/**
+    - package-lock.json
+    - package.json
+    - .env.*
+    - README.md
+    - requirements.*
+    - .gitignore
+
+plugins:
+  - serverless-appsync-plugin
+
+custom:
+  appSync:
+    name: ${opt:stage, self:provider.stage}-sls-sample
+    authenticationType: API_KEY
+    schema: ./sls_configurations/appsync/schema/sls_sample.graphql
+    dataSources:
+      ${file(./sls_configurations/appsync/data-sources/sls_lambda.yml)}
+    mappingTemplatesLocation: ./sls_configurations/appsync/mapping-templates
+    mappingTemplates:
+      ${file(./sls_configurations/appsync/mapping-templates-definitions/sls_sample_data.yml)}
+
+functions:
+  - ${file(./sls_configurations/appsync/functions/sls_appsync_functions.yml)}

@@ -1,0 +1,8 @@
+- type: AWS_LAMBDA
+  name: ${opt:stage, self:provider.stage}_getSampleData
+  config:
+    functionName: getSampleData
+- type: AWS_LAMBDA
+  name: ${opt:stage, self:provider.stage}_createSampleData
+  config:
+      functionName: createSampleData

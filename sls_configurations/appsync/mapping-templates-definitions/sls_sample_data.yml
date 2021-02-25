@@ -1,0 +1,10 @@
+- dataSource: ${opt:stage, self:provider.stage}_getSampleData
+  type: Query
+  field: getSampleData
+  request: Query.lambda.request.vtl
+  response: Query.lambda.response.vtl
+- dataSource: ${opt:stage, self:provider.stage}_createSampleData
+  type: Mutation
+  field: createSampleData
+  request: Query.lambda.request.vtl
+  response: Query.lambda.response.vtl

@@ -1,0 +1,19 @@
+type SampleData {
+    id: ID!
+    name: String!
+    description: String!
+}
+
+type Query {
+    getSampleData(id: ID!): SampleData
+}
+
+type Mutation {
+    createSampleData(input: SampleInput!): SampleData!
+}
+
+input SampleInput {
+    id: ID!
+    name: String!
+    description: String!
+}

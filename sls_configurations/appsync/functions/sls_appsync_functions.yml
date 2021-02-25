@@ -1,0 +1,7 @@
+getSampleData:
+  handler: functions/appsync/get_sample_data.lambda_handler
+  description: 【sls sample】Get Sample Data
+
+createSampleData:
+  handler: functions/appsync/create_sample_data.lambda_handler
+  description: 【sls sample】Create Sample Data
