@@ -1,0 +1,10 @@
+- dataSource: ${opt:stage, self:provider.stage}_SampleDataInDynamoDB
+  type: Query
+  field: getSampleDataInDynamoDB
+  request: Query.dynamo.request.vtl
+  response: Query.dynamo.response.vtl
+- dataSource: ${opt:stage, self:provider.stage}_SampleDataInDynamoDB
+  type: Mutation
+  field: createSampleDataInDynamoDB
+  request: Mutation.dynamo.request.vtl
+  response: Mutation.dynamo.response.vtl

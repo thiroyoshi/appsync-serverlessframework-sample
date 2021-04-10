@@ -37,10 +37,16 @@ custom:
     authenticationType: API_KEY
     schema: ./sls_configurations/appsync/schema/sls_sample.graphql
     dataSources:
-      ${file(./sls_configurations/appsync/data-sources/sls_lambda.yml)}
+      - ${file(./sls_configurations/appsync/data-sources/sls_lambda.yml)}
+      - ${file(./sls_configurations/appsync/data-sources/sls_dynamodb.yml)}
     mappingTemplatesLocation: ./sls_configurations/appsync/mapping-templates
     mappingTemplates:
-      ${file(./sls_configurations/appsync/mapping-templates-definitions/sls_sample_data.yml)}
+      - ${file(./sls_configurations/appsync/mapping-templates-definitions/sls_sample_data.yml)}
+      - ${file(./sls_configurations/appsync/mapping-templates-definitions/sls_sample_data_in_dynamodb.yml)}
+    xrayEnabled: true
 
 functions:
   - ${file(./sls_configurations/appsync/functions/sls_appsync_functions.yml)}
+
+resources:
+  - ${file(./sls_configurations/dynamodb/sls_dynamodb_data.yml)}

@@ -1,0 +1,14 @@
+Resources:
+  DataSourceTable: 
+    Type: AWS::DynamoDB::Table
+    Properties:
+      TableName: ${opt:stage, self:provider.stage}-${self:service.name}-data
+      AttributeDefinitions:
+        - AttributeName: id
+          AttributeType: S
+      KeySchema:
+        - AttributeName: id
+          KeyType: HASH
+      ProvisionedThroughput:
+        ReadCapacityUnits: 1
+        WriteCapacityUnits: 1

@@ -1,19 +1,33 @@
 type SampleData {
     id: ID!
-    name: String!
-    description: String!
+    name: String
+    description: String
+}
+
+type SampleDataInDynamoDB {
+    id: ID!
+    name: String
+    description: String
+    created_at: String!
 }
 
 type Query {
     getSampleData(id: ID!): SampleData
+    getSampleDataInDynamoDB(id: ID!): SampleDataInDynamoDB
 }
 
 type Mutation {
     createSampleData(input: SampleInput!): SampleData!
+    createSampleDataInDynamoDB(input: SampleInputForDynamoDB!): SampleDataInDynamoDB!
 }
 
 input SampleInput {
     id: ID!
     name: String!
-    description: String!
+    description: String
+}
+
+input SampleInputForDynamoDB {
+    name: String!
+    description: String
 }

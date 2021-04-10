@@ -1,0 +1,5 @@
+- type: AMAZON_DYNAMODB
+  name: ${opt:stage, self:provider.stage}_SampleDataInDynamoDB
+  description: Sample Data In DynamoDB
+  config:
+    tableName: { Ref: DataSourceTable }
